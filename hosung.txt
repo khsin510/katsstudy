@@ -1,1 +1,19 @@
-알면 알수록 너무 어렵네요 이거 참나 
+- 어떤 branch가 있는지 확인 하고 싶을 경우
+ : git branch (이때 * 표시는 현재 선택 되어져 있는 branch)
+
+- branch를 생성 하고 자 할 경우
+ : git branch (생성하고자 하는 branch 명)
+ ex> git branch test1
+
+- branch 변경 하고 자 할 경우
+ : git checkout (변경하고자 하는 branch 명)
+ ex> git checkout test1
+ ex> git checkout master
+
+- 두 branch 병합 하고 자 할 경우
+ : git merge (생성한 branch)
+ ex> git merge test1
+
+- branch을 삭제 하고 자 할 경우
+ : git branch -d (삭제하고자 하는 branch 명)
+ ex> git branch -d test1
