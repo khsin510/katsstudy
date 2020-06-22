@@ -7,3 +7,6 @@ git pull 레파지토리 주소
 
 -- git histroty 삭제
  = rm -rf .git
+
+
+test
