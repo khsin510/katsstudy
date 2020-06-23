@@ -25,13 +25,12 @@ public class EmailTestController {
 		// 1. 해당 gmail계정 smtp 사용 허용 설정
 		// 2. 해당 계정 접근권한 보안 수준이 낮은 앱의 액세스 (허용) 필요
 		String host = "smtp.gmail.com"; // 구글의 smtp 서버 이용
-		final String username = "kimminsu6644@gmail.com";  // gmail 계정
+		final String username = "ttt@gmail.com";  // gmail 계정
 		final String password = "****";  // 페스워드
 		int port =465;
 		//int port =587;
 		
-		String recipient = "math6646@naver.com"; //받는 사람의 메일주소를 입력해주세요. 
-		//String recipient = "minsusaki@hansystem.kr"; //받는 사람의 메일주소를 입력해주세요.
+		String recipient = "mt1@naver.com"; //받는 사람의 메일주소를 입력해주세요. 
 		String subject = "메일테스트"; //메일 제목 입력해주세요. 
 		String body = username+"님으로 부터 메일을 받았습니다."; //메일 내용 입력해주세요. 
 		Properties props = System.getProperties(); // 정보를 담기 위한 객체 생성 
