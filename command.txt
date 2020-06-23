@@ -2,6 +2,10 @@
 //민수 깃
 https://github.com/math6646/minsuTest.git
 
+//이메일 이름 설정
+git config --global user.name "홍길동"
+git config --global user.email "support@webisfree.com"
+
 //내 로컬 저장소 만들기
 git init
 
