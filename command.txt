@@ -56,3 +56,5 @@ git merge (생성한 branch)
 //branch을 삭제 하고 자 할 경우
 git branch -d (삭제하고자 하는 branch 명)
  ex> git branch -d test1
+
+// 오늘 하루 일과를 알려주세요, 
