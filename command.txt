@@ -2,6 +2,10 @@
 //민수 깃
 https://github.com/math6646/minsuTest.git
 
+//이메일 이름 설정
+git config --global user.name "홍길동"
+git config --global user.email "support@webisfree.com"
+
 //내 로컬 저장소 만들기
 git init
 
@@ -52,3 +56,5 @@ git merge (생성한 branch)
 //branch을 삭제 하고 자 할 경우
 git branch -d (삭제하고자 하는 branch 명)
  ex> git branch -d test1
+
+// 오늘 하루 일과를 알려주세요, 
