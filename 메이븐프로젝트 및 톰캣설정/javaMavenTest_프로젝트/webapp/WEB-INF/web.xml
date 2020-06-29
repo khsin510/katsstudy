@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+ 
+ <!-- Dispatcher Servlet(Front controller) -->
+ <!-- servlet-name에 설정한 이름이 WEB-INF/설정한이름-servlet.xml를 뜻하게 된다. -->
+<servlet>
+        <servlet-name>spring</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+</servlet>
+
+<!-- 상단의 서블릿네임과 일치 하여야 하고 모든 / 패턴에 대해서는 dispatche servlet을 거친다. -->
+<servlet-mapping>
+        <servlet-name>spring</servlet-name> 
+        <url-pattern>/</url-pattern>
+</servlet-mapping>
+
+<!-- 파라미터의 이름은 contextConfigLocation이고 어떤 객체들을 미리 만들어 놓을지가 작성된 설정파일의 경로를 값으로 할당해 놓습니다. --> 
+<context-param>
+	<param-name>contextConfigLocation</param-name>
+	<param-value>/WEB-INF/applicationContext.xml</param-value>
+</context-param> 
+
+<!-- 
+톰캣을 실행하면 <listener>가 등록되어 있는 ContextLoaderListner 객체를 호출하는데, 이 객체는 내부적으로 부모 객체를 실행합니다.
+부모 객체는 ContextLoader이며 이 객체에서 Root Application Context를 생성하는데, 이 컨테이너에는 웹과 관련이 없는 객체들을 저장합니다.
+예를들면 DAO 객체들은 웹과 직접적인 관련이 없는 객체입니다.
+단지 DB에 접근하기 위한 객체들일 뿐이죠.
+ -->
+<listener>
+	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+</listener>
+  
+   
+   <!-- Encoding Filter -->
+<filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+               <param-name>encoding</param-name>
+               <param-value>UTF-8</param-value>
+        </init-param>
+
+        <init-param>
+               <param-name>forceEncoding</param-name>
+               <param-value>true</param-value>
+        </init-param>
+</filter>
+
+<filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+</filter-mapping>
+
+  <display-name>javaMavenTest</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+
+</web-app>

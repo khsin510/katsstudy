@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="bbs">
+<select id="getList" resultType="bbsvo">
+	SELECT 
+		bbsTitle
+		,userID
+		,bbsDatE
+	FROM bbs 
+order by bbsDate
+	limit 0,10
+</select> 
+
+<insert id="insertFirst" >
+insert into bbs(bbsTitle,userID,bbsDate,bbsContent,bbsAvailable) values('bbsTitle1','userID1',now(),'bbsCon1',1)
+</insert>      
+
+<insert id="insertTwo">
+insert into bbs(bbsTitle,userID,bbsDate,bbsContent,bbsAvailable) values('bbsTitle2','userID2',now(),'bbsCon2','2a')
+</insert>            
+</mapper>

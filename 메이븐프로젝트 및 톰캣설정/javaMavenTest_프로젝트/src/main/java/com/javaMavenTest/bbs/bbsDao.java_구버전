@@ -1,0 +1,54 @@
+package com.javaMavenTest.bbs;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.javaMavenTest.bbs.bbsVo;
+
+@Repository
+public class bbsDao {
+
+	@Autowired
+	DataSource dataSource;
+	
+	public ArrayList<bbsVo> getList(){ 
+		String SQL = "SELECT * FROM BBS WHERE 1=1 AND bbsAvailable = 1 ORDER BY bbsID DESC limit 0,10";
+		ArrayList<bbsVo> list = new ArrayList<bbsVo>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			rs=pstmt.executeQuery();
+			while (rs.next()) {
+				bbsVo bbsVo = new bbsVo();
+				bbsVo.setBbsID(rs.getInt(1));
+				bbsVo.setBbsTitle(rs.getString(2));
+				bbsVo.setUserID(rs.getString(3));
+				bbsVo.setBbsDate(rs.getString(4));
+				bbsVo.setBbsContent(rs.getString(5));
+				//bbs.setBbsAvailable(rs.getInt(6));						
+				list.add(bbsVo);
+			}
+		
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			  if (rs != null) try { rs.close(); } catch(SQLException e) {e.printStackTrace();}
+			  if (pstmt != null) try { pstmt.close(); } catch(SQLException e) {e.printStackTrace();}
+			  if (conn != null) try { conn.close(); } catch(SQLException e) {e.printStackTrace();}
+		}
+		return list; 
+	}	
+	
+}

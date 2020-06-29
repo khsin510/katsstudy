@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xmlns:context="http://www.springframework.org/schema/context"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd    http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd    http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd    http://www.springframework.org/schema/jee
+http://www.springframework.org/schema/jee/spring-jee.xsd    http://www.springframework.org/schema/lang
+http://www.springframework.org/schema/lang/spring-lang.xs    http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd    http://www.springframework.org/schema/util
+http://www.springframework.org/schema/util/spring-util.xsd    http://www.springframework.org/schema/task
+http://www.springframework.org/schema/task/spring-task.xsd">
+
+  <context:annotation-config />
+  
+         <context:component-scan base-package="com.javaMavenTest">
+                  <context:include-filter type="annotation"
+                           expression="org.springframework.stereotype.Repository" />
+                  <context:include-filter type="annotation"
+                           expression="org.springframework.stereotype.Service" />
+                  <context:include-filter type="annotation"
+                           expression="org.springframework.stereotype.Component" />
+                  <context:exclude-filter type="annotation"
+                  		   expression="org.springframework.stereotype.Controller"/>
+                  		  <!--  exclude는 포함하지 않겠다. 즉 controller를 빼고 포함한다. -->
+         </context:component-scan>
+
+<!-- DB커넥션 풀 설정 -->
+<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/sftk_office?characterEncoding=UTF8" />        
+        <property name="username" value="root" />
+        <property name="password" value="admin" />
+</bean>
+
+<!--
+MyBatis SqlSessionFactoryBean 
+dataSource와 mybatis 환경설정파일(configration.xml)을 프로퍼티로 갖는다.
+--> 
+<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> 
+        <property name="dataSource" ref="dataSource" /> 
+        <property name="configLocation" value="classpath:mybatis/configuration.xml" /> 
+</bean>
+<!-- 
+MyBatis SqlSessionTemplate
+생성자의 첫 번째 파라미터에 sqlSessionFactory 객체를 넣으라는 의미 
+구버전_dao에서 중복되는 코드를 모듈화 시키는 부분을 담당
+SQL Mapping에 필요한 부분을 작성한 설정 파일들을 SqlSessionFactoryBean에 저장해둡니다.
+그러면 sqlSession을 통해 메서드 호출만으로 쿼리를 실행할 수 있습니다.
+ -->
+<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory" />
+</bean>
+ 
+ <!-- 파일처리하기 위하여 세팅해줌 -->
+<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+ 
+ 
+</beans>
+
