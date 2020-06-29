@@ -1,9 +1,0 @@
-diff a/메이븐프로젝트 및 톰캣설정/javaMavenTest_프로젝트/src/main/java/com/javaMavenTest/emailTest/EmailTestController.java b/메이븐프로젝트 및 톰캣설정/javaMavenTest_프로젝트/src/main/java/com/javaMavenTest/emailTest/EmailTestController.java	(rejected hunks)
-@@ -25,7 +25,6 @@
- 		// 1. �ش� gmail���� smtp ��� ��� ����
- 		// 2. �ش� ���� ���ٱ��� ���� ������ ���� ���� �׼��� (���) �ʿ�
- 		String host = "smtp.gmail.com"; // ������ smtp ���� �̿�
--		final String password = "kim@8588";  // �佺����
- 		final String username = "k";  // gmail ����
- 		final String password = "k";  // �佺����
- 		int port =465;
