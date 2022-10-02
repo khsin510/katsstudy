@@ -13,6 +13,6 @@ git pull 레파지토리 주소
 -- git histroty 삭제
  = rm -rf .git
 
-//minsu
+
 123123
 >>>>>>> 1c580627f586d0369e72f430146d155ca2405f14
